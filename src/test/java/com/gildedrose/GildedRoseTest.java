@@ -101,7 +101,7 @@ class GildedRoseTest {
                 .isEqualTo(8);
     }
 
-    private static Stream<Arguments> provideParameterForAgedBrieQualityIncreases() {
+    static Stream<Arguments> provideParameterForAgedBrieQualityIncreases() {
         return Stream.of(
                 Arguments.of(1, 1, 0), // Aged Brie increases in quality
                 Arguments.of(2, 0, 0), // Aged Brie increases twice in quality
