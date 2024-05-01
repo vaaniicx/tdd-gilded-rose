@@ -20,7 +20,7 @@ public class Item {
             if (quality < 50) {
                 quality = quality + 1;
 
-                if (name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                if (name.equals(ItemType.BACKSTAGE_PASS.getName())) {
                     if (sellIn < 11 && quality < 50) {
                         quality = quality + 1;
                     }
@@ -31,7 +31,7 @@ public class Item {
                 }
             }
 
-            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!name.equals(ItemType.SULFURAS.getName())) {
                 sellIn = sellIn - 1;
             }
 
@@ -40,8 +40,8 @@ public class Item {
             }
 
         } else {
-            if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (quality > 0 && !name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!name.equals(ItemType.BACKSTAGE_PASS.getName())) {
+                if (quality > 0 && !name.equals(ItemType.SULFURAS.getName())) {
                     quality = quality - 1;
                 }
 
@@ -59,13 +59,13 @@ public class Item {
                 }
             }
 
-            if (!name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!name.equals(ItemType.SULFURAS.getName())) {
                 sellIn = sellIn - 1;
             }
 
             if (sellIn < 0) {
-                if (!name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    if (quality > 0 && !name.equals("Sulfuras, Hand of Ragnaros")) {
+                if (!name.equals(ItemType.BACKSTAGE_PASS.getName())) {
+                    if (quality > 0 && !name.equals(ItemType.SULFURAS.getName())) {
                         quality = quality - 1;
                     }
                 } else {
