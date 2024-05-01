@@ -39,35 +39,35 @@ public class Item {
     }
 
     private void decreaseQualityOfRemaining() {
-        if (quality > 0) {
+        if (canDecreaseQuality()) {
             decreaseQuality();
         }
 
-        if (sellIn < 0 && quality > 0) {
+        if (sellIn < 0 && canDecreaseQuality()) {
             decreaseQuality();
         }
     }
 
     private void increaseQualityOfBackstagePass() {
-        if (quality < 50) {
+        if (canImproveQuality()) {
             increaseQuality();
 
-            if (sellIn <= 10 && quality < 50) {
+            if (sellIn <= 10 && canImproveQuality()) {
                 increaseQuality();
             }
 
-            if (sellIn <= 5 && quality < 50) {
+            if (sellIn <= 5 && canImproveQuality()) {
                 increaseQuality();
             }
         }
     }
 
     private void increaseQualityOfAgedBrie() {
-        if (quality < 50) {
+        if (canImproveQuality()) {
             increaseQuality(); // Aged Brie increases in quality
         }
 
-        if (sellIn < 0 && quality < 50) {
+        if (sellIn < 0 && canImproveQuality()) {
             // Aged Brie increases even more in quality, when SellIn drops under 0
             increaseQuality();
         }
@@ -83,5 +83,13 @@ public class Item {
 
     private void decreaseSellIn() {
         sellIn--;
+    }
+
+    private boolean canImproveQuality() {
+        return quality < 50;
+    }
+
+    private boolean canDecreaseQuality() {
+        return quality > 0;
     }
 }
