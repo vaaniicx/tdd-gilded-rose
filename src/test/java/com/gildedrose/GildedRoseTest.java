@@ -12,6 +12,18 @@ class GildedRoseTest {
     @Test
     @DisplayName("Aged Brie increases in quality")
     void test_agedBrieQualityIncrease() {
+        Item[] items = { new Item("Aged Brie", 1, 0) };
+        underTest = new GildedRose(items);
+
+        underTest.updateQuality();
+
+        assertThat(items[0].getQuality())
+                .isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("Aged Brie increases twice in quality")
+    void test_agedBrieQualityIncreaseTwice() {
         Item[] items = { new Item("Aged Brie", 0, 0) };
         underTest = new GildedRose(items);
 
