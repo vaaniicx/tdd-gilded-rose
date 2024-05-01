@@ -21,6 +21,7 @@ public class Item {
         boolean isAgedBrie = name.equals(ItemType.AGED_BRIE.getName());
         boolean isBackstagePass = name.equals(ItemType.BACKSTAGE_PASS.getName());
         boolean isSulfuras = name.equals(ItemType.SULFURAS.getName());
+
         if (isSulfuras) {
             // Sulfuras never has to be sold
             // Sulfuras never decreases in quality
