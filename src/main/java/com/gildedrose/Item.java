@@ -17,42 +17,59 @@ public class Item {
         boolean isAgedBrie = name.equals(ItemType.AGED_BRIE.getName());
         boolean isBackstagePass = name.equals(ItemType.BACKSTAGE_PASS.getName());
         boolean isSulfuras = name.equals(ItemType.SULFURAS.getName());
+        if (isSulfuras) {
+            // Sulfuras never has to be sold
+            // Sulfuras never decreases in quality
+            return;
+        }
 
+        decreaseSellIn();
         if (isAgedBrie) {
-            if (quality < 50) {
-                increaseQuality();
-            }
-            decreaseSellIn();
-
-            if (sellIn < 0 && quality < 50) {
-                increaseQuality();
-            }
+            increaseQualityOfAgedBrie();
         } else if (isBackstagePass) {
-            if (quality < 50) {
-                increaseQuality();
-
-                if (sellIn <= 10 && quality < 50) {
-                    increaseQuality();
-                }
-
-                if (sellIn <= 5 && quality < 50) {
-                    increaseQuality();
-                }
-            }
-            decreaseSellIn();
+            increaseQualityOfBackstagePass();
 
             if (sellIn < 0) {
+                // Quality of Backstage Passes drops to 0 after the concert
                 quality = 0;
             }
-        } else if (!isSulfuras) {
-            if (quality > 0) {
-                decreaseQuality();
-            }
-            decreaseSellIn();
+        } else {
+            decreaseQualityOfRemaining();
+        }
+    }
 
-            if (sellIn < 0 && quality > 0) {
-                decreaseQuality();
+    private void decreaseQualityOfRemaining() {
+        if (quality > 0) {
+            decreaseQuality();
+        }
+
+        if (sellIn < 0 && quality > 0) {
+            decreaseQuality();
+        }
+    }
+
+    private void increaseQualityOfBackstagePass() {
+        if (quality < 50) {
+            increaseQuality();
+
+            if (sellIn <= 10 && quality < 50) {
+                increaseQuality();
             }
+
+            if (sellIn <= 5 && quality < 50) {
+                increaseQuality();
+            }
+        }
+    }
+
+    private void increaseQualityOfAgedBrie() {
+        if (quality < 50) {
+            increaseQuality(); // Aged Brie increases in quality
+        }
+
+        if (sellIn < 0 && quality < 50) {
+            // Aged Brie increases even more in quality, when SellIn drops under 0
+            increaseQuality();
         }
     }
 
