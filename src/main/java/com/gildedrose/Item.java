@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class Item {
     private static final int MAXIMUM_QUALITY = 50;
+
     private static final int LOWEST_QUALITY = 0;
 
     private String name;
@@ -21,6 +22,7 @@ public class Item {
         boolean isAgedBrie = name.equals(ItemType.AGED_BRIE.getName());
         boolean isBackstagePass = name.equals(ItemType.BACKSTAGE_PASS.getName());
         boolean isSulfuras = name.equals(ItemType.SULFURAS.getName());
+        boolean isConjured = name.equals(ItemType.CONJURED_MANA_CAKE.getName());
 
         if (isSulfuras) {
             // Sulfuras never has to be sold
@@ -39,11 +41,16 @@ public class Item {
                 quality = LOWEST_QUALITY;
             }
         } else {
-            decreaseQualityOfRemaining();
+            decreaseQualityOfItem();
+
+            if (isConjured) {
+                // Conjured items decrease in quality twice as fast as normal items
+                decreaseQualityOfItem();
+            }
         }
     }
 
-    private void decreaseQualityOfRemaining() {
+    private void decreaseQualityOfItem() {
         if (canDecreaseQuality()) {
             decreaseQuality();
         }
