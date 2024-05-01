@@ -31,11 +31,11 @@ public class Item {
             if (quality < 50) {
                 increaseQuality();
 
-                if (sellIn < 11 && quality < 50) {
+                if (sellIn <= 10 && quality < 50) {
                     increaseQuality();
                 }
 
-                if (sellIn < 6 && quality < 50) {
+                if (sellIn <= 5 && quality < 50) {
                     increaseQuality();
                 }
             }
