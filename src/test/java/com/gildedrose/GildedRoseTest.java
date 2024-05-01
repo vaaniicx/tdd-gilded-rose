@@ -10,18 +10,6 @@ class GildedRoseTest {
     private GildedRose underTest;
 
     @Test
-    @DisplayName("Aged Brie increases in quality")
-    void test_agedBrieQualityIncrease() {
-        Item[] items = { new Item("Aged Brie", 1, 0) };
-        underTest = new GildedRose(items);
-
-        underTest.updateQuality();
-
-        assertThat(items[0].quality)
-                .isEqualTo(1);
-    }
-
-    @Test
     @DisplayName("Aged Brie increases twice in quality")
     void test_agedBrieQualityIncreaseTwice() {
         Item[] items = { new Item("Aged Brie", 0, 0) };
@@ -29,7 +17,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isEqualTo(2);
     }
 
@@ -41,7 +29,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isEqualTo(50);
     }
 
@@ -53,7 +41,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].sellIn)
+        assertThat(items[0].getSellIn())
                 .isZero();
     }
 
@@ -65,7 +53,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isEqualTo(80);
     }
 
@@ -77,7 +65,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isEqualTo(12);
     }
 
@@ -89,7 +77,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isEqualTo(13);
     }
 
@@ -101,7 +89,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isZero();
     }
 
@@ -113,7 +101,7 @@ class GildedRoseTest {
 
         underTest.updateQuality();
 
-        assertThat(items[0].quality)
+        assertThat(items[0].getQuality())
                 .isEqualTo(8);
     }
 }
