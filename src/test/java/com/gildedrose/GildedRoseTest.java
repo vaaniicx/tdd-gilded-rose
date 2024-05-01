@@ -101,6 +101,18 @@ class GildedRoseTest {
                 .isEqualTo(8);
     }
 
+    @Test
+    @DisplayName("Conjured items degrade in quality twice as fast as normal items")
+    void test_conjuredItemsQualityDecrease() {
+        val items = Collections.singletonList(new Item(ItemType.CONJURED_MANA_CAKE.getName(), 10, 10));
+        underTest = new GildedRose(items);
+
+        underTest.updateQuality();
+
+        assertThat(items.getFirst().getQuality())
+                .isEqualTo(8);
+    }
+
     static Stream<Arguments> provideParameterForAgedBrieQualityIncreases() {
         return Stream.of(
                 Arguments.of(1, 1, 0), // Aged Brie increases in quality
