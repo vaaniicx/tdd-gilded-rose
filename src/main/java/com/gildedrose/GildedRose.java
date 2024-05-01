@@ -1,9 +1,11 @@
 package com.gildedrose;
 
-class GildedRose {
-    Item[] items;
+import java.util.List;
 
-    public GildedRose(Item[] items) {
+class GildedRose {
+    private final List<Item> items;
+
+    public GildedRose(List<Item> items) {
         this.items = items;
     }
 
