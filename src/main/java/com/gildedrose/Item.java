@@ -6,6 +6,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Item {
+    private static final int MAXIMUM_QUALITY = 50;
+    private static final int LOWEST_QUALITY = 0;
 
     public String name;
 
@@ -31,7 +33,7 @@ public class Item {
 
             if (sellIn < 0) {
                 // Quality of Backstage Passes drops to 0 after the concert
-                quality = 0;
+                quality = LOWEST_QUALITY;
             }
         } else {
             decreaseQualityOfRemaining();
@@ -86,10 +88,10 @@ public class Item {
     }
 
     private boolean canImproveQuality() {
-        return quality < 50;
+        return quality < MAXIMUM_QUALITY;
     }
 
     private boolean canDecreaseQuality() {
-        return quality > 0;
+        return quality > LOWEST_QUALITY;
     }
 }
