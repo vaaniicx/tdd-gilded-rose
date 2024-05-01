@@ -16,6 +16,7 @@ public class Item {
     void updateItem() {
         boolean isAgedBrie = name.equals(ItemType.AGED_BRIE.getName());
         boolean isBackstagePass = name.equals(ItemType.BACKSTAGE_PASS.getName());
+        boolean isSulfuras = name.equals(ItemType.SULFURAS.getName());
 
         if (isAgedBrie) {
             if (quality < 50) {
@@ -32,7 +33,7 @@ public class Item {
                 }
             }
 
-            if (!name.equals(ItemType.SULFURAS.getName())) {
+            if (!isSulfuras) {
                 sellIn = sellIn - 1;
             }
 
@@ -52,27 +53,24 @@ public class Item {
                 }
             }
 
-            if (!name.equals(ItemType.SULFURAS.getName())) {
+            if (!isSulfuras) {
                 sellIn = sellIn - 1;
             }
 
             if (sellIn < 0) {
                 quality = 0;
             }
-        } else {
-            if (quality > 0 && !name.equals(ItemType.SULFURAS.getName())) {
+        } else if (!isSulfuras) {
+            if (quality > 0) {
                 quality = quality - 1;
             }
 
-            if (!name.equals(ItemType.SULFURAS.getName())) {
-                sellIn = sellIn - 1;
+            sellIn = sellIn - 1;
+
+            if (sellIn < 0 && quality > 0) {
+                quality = quality - 1;
             }
 
-            if (sellIn < 0) {
-                if (quality > 0 && !name.equals(ItemType.SULFURAS.getName())) {
-                    quality = quality - 1;
-                }
-            }
         }
     }
 }
