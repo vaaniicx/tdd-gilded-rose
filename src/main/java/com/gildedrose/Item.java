@@ -20,39 +20,38 @@ public class Item {
 
         if (isAgedBrie) {
             if (quality < 50) {
-                quality = quality + 1;
+                quality++;
             }
-            sellIn = sellIn - 1;
+            sellIn--;
 
             if (sellIn < 0 && quality < 50) {
-                quality = quality + 1;
+                quality++;
             }
         } else if (isBackstagePass) {
             if (quality < 50) {
-                quality = quality + 1;
+                quality++;
 
                 if (sellIn < 11 && quality < 50) {
-                    quality = quality + 1;
+                    quality++;
                 }
 
                 if (sellIn < 6 && quality < 50) {
-                    quality = quality + 1;
+                    quality++;
                 }
             }
-            sellIn = sellIn - 1;
+            sellIn--;
 
             if (sellIn < 0) {
                 quality = 0;
             }
         } else if (!isSulfuras) {
             if (quality > 0) {
-                quality = quality - 1;
+                quality--;
             }
-
-            sellIn = sellIn - 1;
+            sellIn--;
 
             if (sellIn < 0 && quality > 0) {
-                quality = quality - 1;
+                quality--;
             }
         }
     }
