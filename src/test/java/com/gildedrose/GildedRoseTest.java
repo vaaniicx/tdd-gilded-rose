@@ -2,47 +2,29 @@ package com.gildedrose;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class GildedRoseTest {
 
     private GildedRose underTest;
 
-    @Test
-    @DisplayName("Aged Brie increases in quality")
-    void test_agedBrieQualityIncrease() {
-        Item[] items = { new Item(ItemType.AGED_BRIE.getName(), 1, 0) };
+    @ParameterizedTest
+    @MethodSource(value = "provideParameterForAgedBrieQualityIncreases")
+    @DisplayName("Aged Brie increases in quality, but never exceeds maximum quality")
+    void test_agedBrieQualityIncreases(int expected, int sellIn, int quality) {
+        Item[] items = { new Item(ItemType.AGED_BRIE.getName(), sellIn, quality) };
         underTest = new GildedRose(items);
 
         underTest.updateQuality();
 
         assertThat(items[0].getQuality())
-                .isEqualTo(1);
-    }
-
-    @Test
-    @DisplayName("Aged Brie increases twice in quality")
-    void test_agedBrieQualityIncreaseTwice() {
-        Item[] items = { new Item(ItemType.AGED_BRIE.getName(), 0, 0) };
-        underTest = new GildedRose(items);
-
-        underTest.updateQuality();
-
-        assertThat(items[0].getQuality())
-                .isEqualTo(2);
-    }
-
-    @Test
-    @DisplayName("The quality of an item cannot be higher than 50")
-    void test_maximumItemQuality() {
-        Item[] items = { new Item(ItemType.AGED_BRIE.getName(), 200, 50) };
-        underTest = new GildedRose(items);
-
-        underTest.updateQuality();
-
-        assertThat(items[0].getQuality())
-                .isEqualTo(50);
+                .isEqualTo(expected);
     }
 
     @Test
@@ -115,5 +97,13 @@ class GildedRoseTest {
 
         assertThat(items[0].getQuality())
                 .isEqualTo(8);
+    }
+
+    private static Stream<Arguments> provideParameterForAgedBrieQualityIncreases() {
+        return Stream.of(
+                Arguments.of(1, 1, 0), // Aged Brie increases in quality
+                Arguments.of(2, 0, 0), // Aged Brie increases twice in quality
+                Arguments.of(50, 200, 50) // The quality of an item cannot be higher than 50
+        );
     }
 }
