@@ -12,13 +12,13 @@ class GildedRoseTest {
     @Test
     @DisplayName("Aged Brie increases in quality")
     void test_agedBrieQualityIncrease() {
-        Item[] items = { new Item("Aged Brie", 200, 0) };
+        Item[] items = { new Item("Aged Brie", 0, 0) };
         underTest = new GildedRose(items);
 
         underTest.updateQuality();
 
         assertThat(items[0].quality)
-                .isEqualTo(1);
+                .isEqualTo(2);
     }
 
     @Test
