@@ -42,7 +42,7 @@ class GildedRoseTest {
         underTest.updateQuality();
 
         assertThat(items[0].sellIn)
-                .isEqualTo(0);
+                .isZero();
     }
 
     @Test
@@ -90,7 +90,7 @@ class GildedRoseTest {
         underTest.updateQuality();
 
         assertThat(items[0].quality)
-                .isEqualTo(0);
+                .isZero();
     }
 
     @Test
