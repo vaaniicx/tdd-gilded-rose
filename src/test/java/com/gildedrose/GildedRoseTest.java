@@ -22,6 +22,18 @@ class GildedRoseTest {
     }
 
     @Test
+    @DisplayName("Aged Brie increases twice in quality")
+    void test_agedBrieQualityIncreaseTwice() {
+        Item[] items = { new Item("Aged Brie", 0, 0) };
+        underTest = new GildedRose(items);
+
+        underTest.updateQuality();
+
+        assertThat(items[0].quality)
+                .isEqualTo(2);
+    }
+
+    @Test
     @DisplayName("The quality of an item cannot be higher than 50")
     void test_maximumItemQuality() {
         Item[] items = { new Item("Aged Brie", 200, 50) };
