@@ -29,6 +29,14 @@ class GildedRoseTest {
                 .isEqualTo(expected);
     }
 
+    static Stream<Arguments> provideParameterForAgedBrieQualityIncreases() {
+        return Stream.of(
+                Arguments.of(1, 1, 0), // Aged Brie increases in quality
+                Arguments.of(2, 0, 0), // Aged Brie increases twice in quality
+                Arguments.of(50, 200, 50) // The quality of an item cannot be higher than 50
+        );
+    }
+
     @Test
     @DisplayName("Sulfuras never has to be sold")
     void test_sulfurasSellIn() {
@@ -111,13 +119,5 @@ class GildedRoseTest {
 
         assertThat(items.getFirst().getQuality())
                 .isEqualTo(8);
-    }
-
-    static Stream<Arguments> provideParameterForAgedBrieQualityIncreases() {
-        return Stream.of(
-                Arguments.of(1, 1, 0), // Aged Brie increases in quality
-                Arguments.of(2, 0, 0), // Aged Brie increases twice in quality
-                Arguments.of(50, 200, 50) // The quality of an item cannot be higher than 50
-        );
     }
 }
